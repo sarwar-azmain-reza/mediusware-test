@@ -53,7 +53,14 @@ const Problem2 = () => {
             setShowContacts(evenContacts);
         }
         else {
-            setShowContacts(allContacts);
+            if (modalTitle === 'US Contacts') {
+                const usContacts = allContacts.filter(contact => contact.country.name === 'United States');
+                setShowContacts(usContacts);
+            }
+            else {
+
+                setShowContacts(allContacts);
+            }
         }
     }
 
@@ -86,7 +93,7 @@ const Problem2 = () => {
                     </Modal.Header>
                     <Modal.Body>
                         {
-                            showContacts.map(contact => <div key={contact.id} className='d-flex cursor-pointer' onClick={()=>detailContact(contact.id)}>
+                            showContacts.map(contact => <div key={contact.id} className='d-flex cursor-pointer' onClick={() => detailContact(contact.id)}>
                                 <p className='me-3'>{contact.id}.</p>
                                 <p className='me-5'>{contact.phone}</p>
                                 <p>{contact?.country?.name}</p>
@@ -109,13 +116,13 @@ const Problem2 = () => {
                                 </div>
                             ))}
                         </Form>
-                        <Button style={{backgroundColor:'#46139f', border:'1px solid #46139f'}} onClick={showAllContacts}>
+                        <Button style={{ backgroundColor: '#46139f', border: '1px solid #46139f' }} onClick={showAllContacts}>
                             All Contacts
                         </Button>
-                        <Button style={{backgroundColor:'#ff7f50', border:'1px solid #ff7f50'}} onClick={showUSContacts}>
+                        <Button style={{ backgroundColor: '#ff7f50', border: '1px solid #ff7f50' }} onClick={showUSContacts}>
                             US Contacts
                         </Button>
-                        <Button style={{backgroundColor:'#46139f', border:'1px solid #46139f'}} onClick={handleClose}>
+                        <Button style={{ backgroundColor: '#46139f', border: '1px solid #46139f' }} onClick={handleClose}>
                             Close
                         </Button>
 
